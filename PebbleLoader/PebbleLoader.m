@@ -289,7 +289,10 @@
             [file addProblemAt:block.from withString:@"API call candidate block is the wrong size, trying anyway."];
         }
         if (proc.entryPoint != block.from) {
+            Address oldProcAddress = proc.entryPoint;
             proc = [file makeProcedureAt:block.from];
+            // don't discard the old procedure!
+            [file makeProcedureAt:oldProcAddress];
         }
         
         // call index is always word after the function
