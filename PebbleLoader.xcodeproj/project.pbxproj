@@ -17,7 +17,7 @@
 /* Begin PBXFileReference section */
 		2870699A2193759D00D20B89 /* StructTypes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StructTypes.json; sourceTree = "<group>"; };
 		2870699C2194B53800D20B89 /* api.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = api.txt; sourceTree = "<group>"; };
-		288738542192059A00E24DC3 /* PebbleLoader.hopperLoader */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PebbleLoader.hopperLoader; sourceTree = BUILT_PRODUCTS_DIR; };
+		288738542192059A00E24DC3 /* Pebble.hopperLoader */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Pebble.hopperLoader; sourceTree = BUILT_PRODUCTS_DIR; };
 		288738572192059A00E24DC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2887385D219205D000E24DC3 /* PebbleLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PebbleLoader.h; sourceTree = "<group>"; };
 		2887385E219205D000E24DC3 /* PebbleLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PebbleLoader.m; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 		288738552192059A00E24DC3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				288738542192059A00E24DC3 /* PebbleLoader.hopperLoader */,
+				288738542192059A00E24DC3 /* Pebble.hopperLoader */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,7 +152,7 @@
 			);
 			name = PebbleLoader;
 			productName = PebbleLoader;
-			productReference = 288738542192059A00E24DC3 /* PebbleLoader.hopperLoader */;
+			productReference = 288738542192059A00E24DC3 /* Pebble.hopperLoader */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -334,7 +334,7 @@
 				INFOPLIST_FILE = PebbleLoader/Info.plist;
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Application Support/Hopper/PlugIns/v4/Loaders";
 				PRODUCT_BUNDLE_IDENTIFIER = net.namedfork.PebbleLoader;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Pebble;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = hopperLoader;
 			};
@@ -349,7 +349,7 @@
 				INFOPLIST_FILE = PebbleLoader/Info.plist;
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Application Support/Hopper/PlugIns/v4/Loaders";
 				PRODUCT_BUNDLE_IDENTIFIER = net.namedfork.PebbleLoader;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Pebble;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = hopperLoader;
 			};
