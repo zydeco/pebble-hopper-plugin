@@ -10,25 +10,6 @@
 #import <Hopper/HPTypeDesc.h>
 #import <Hopper/HPMethodSignature.h>
 
-#define HEADER_ADDR 0x0                // 8 bytes
-#define STRUCT_VERSION_ADDR 0x8        // 2 bytes
-#define SDK_VERSION_ADDR 0xa           // 2 bytes
-#define APP_VERSION_ADDR 0xc           // 2 bytes
-#define LOAD_SIZE_ADDR 0xe             // 2 bytes
-#define OFFSET_ADDR 0x10               // 4 bytes
-#define CRC_ADDR 0x14                  // 4 bytes
-#define NAME_ADDR 0x18                 // 32 bytes
-#define COMPANY_ADDR 0x38              // 32 bytes
-#define ICON_RES_ID_ADDR 0x58          // 4 bytes
-#define JUMP_TABLE_ADDR 0x5c           // 4 bytes
-#define FLAGS_ADDR 0x60                // 4 bytes
-#define NUM_RELOC_ENTRIES_ADDR 0x64    // 4 bytes
-#define UUID_ADDR 0x68                 // 16 bytes
-#define RESOURCE_CRC_ADDR 0x78         // 4 bytes
-#define RESOURCE_TIMESTAMP_ADDR 0x7c   // 4 bytes
-#define VIRTUAL_SIZE_ADDR 0x80         // 2 bytes
-#define HEADER_SIZE 0x82
-
 #define kTrampolineFunctionName @"jump_to_pbl_function"
 
 @interface PebbleLoader (Types)
@@ -127,8 +108,16 @@
 - (NSData*)applyRelocationToBinary:(NSData*)binary withLoadAddress:(uint32_t)baseAddress {
     uint8_t *data = malloc(binary.length);
     memcpy(data, binary.bytes, binary.length);
-    uint32_t relocTableOffset = OSReadLittleInt16(data, LOAD_SIZE_ADDR);
-    uint32_t numRelocEntries = OSReadLittleInt32(data, NUM_RELOC_ENTRIES_ADDR);
+    uint8_t headerMajorVersion = data[0x08];
+    uint32_t relocTableOffset;
+    uint32_t numRelocEntries;
+    if (headerMajorVersion < 9) {
+        relocTableOffset = OSReadLittleInt32(data, 0x64);
+        numRelocEntries = OSReadLittleInt32(data, 0x68);
+    } else {
+        relocTableOffset = OSReadLittleInt16(data, 0x0e);
+        numRelocEntries = OSReadLittleInt32(data, 0x64);
+    }
     for (int i=0; i < numRelocEntries; i++) {
         uint32_t relocOffset = OSReadLittleInt32(data, relocTableOffset + (4*i));
         uint32_t relocValue = OSReadLittleInt32(data, relocOffset);
@@ -146,8 +135,9 @@
     uint32_t baseAddress = 0x10000;
     NSData *data = [self applyRelocationToBinary:loadData withLoadAddress:baseAddress];
     const uint8_t *header = data.bytes;
-    uint32_t loadSize = OSReadLittleInt16(header, LOAD_SIZE_ADDR);
-    uint32_t virtualSize = OSReadLittleInt16(header, VIRTUAL_SIZE_ADDR);
+    uint8_t headerMajorVersion = header[0x08];
+    uint32_t loadSize = OSReadLittleInt16(header, 0x0e);
+    uint32_t virtualSize = (headerMajorVersion >= 0x10) ? OSReadLittleInt16(header, 0x80) : OSReadLittleInt32(header, 0x64);
     NSObject<HPSegment> *segment = [file addSegmentAt:baseAddress size:virtualSize];
     segment.mappedData = data;
     segment.segmentName = @"app";
@@ -162,64 +152,98 @@
     headerSection.fileOffset = 0;
     headerSection.fileLength = 0x84;
     headerSection.pureDataSection = YES;
-    [file setName:@".pblapp" forVirtualAddress:baseAddress reason:NCReason_Import];
-    [file setType:Type_ASCII atVirtualAddress:baseAddress forLength:8];
-    [file setInlineComment:@"magic" atVirtualAddress:baseAddress reason:CCReason_Automatic];
     
-    [file setType:Type_Int8 atVirtualAddress:baseAddress + STRUCT_VERSION_ADDR forLength:2];
-    [file setInlineComment:[NSString stringWithFormat:@"struct_version = %d.%d", header[STRUCT_VERSION_ADDR], header[STRUCT_VERSION_ADDR+1]] atVirtualAddress:baseAddress + STRUCT_VERSION_ADDR reason:CCReason_Automatic];
+    Address nextAddress = baseAddress;
+    [file setName:@".pblapp" forVirtualAddress:nextAddress reason:NCReason_Import];
+    [file setType:Type_ASCII atVirtualAddress:nextAddress forLength:8];
+    [file setInlineComment:@"magic" atVirtualAddress:nextAddress reason:CCReason_Automatic];
+    nextAddress += 8;
     
-    [file setType:Type_Int8 atVirtualAddress:baseAddress + SDK_VERSION_ADDR forLength:2];
-    [file setInlineComment:[NSString stringWithFormat:@"sdk_version = %d.%d", header[SDK_VERSION_ADDR], header[SDK_VERSION_ADDR+1]] atVirtualAddress:baseAddress + SDK_VERSION_ADDR reason:CCReason_Automatic];
+    [file setType:Type_Int8 atVirtualAddress:nextAddress forLength:2];
+    struct {
+        uint8_t major, minor;
+    } headerVersion = {
+        .major = header[0x08],
+        .minor = header[0x09]
+    };
+    [file setInlineComment:[NSString stringWithFormat:@"struct_version = %d.%d", headerVersion.major, headerVersion.minor] atVirtualAddress:nextAddress reason:CCReason_Automatic];
+    nextAddress += 2;
     
-    [file setType:Type_Int8 atVirtualAddress:baseAddress + APP_VERSION_ADDR forLength:2];
-    [file setInlineComment:[NSString stringWithFormat:@"app_version = %d.%d", header[APP_VERSION_ADDR], header[APP_VERSION_ADDR+1]] atVirtualAddress:baseAddress + APP_VERSION_ADDR reason:CCReason_Automatic];
+    [file setType:Type_Int8 atVirtualAddress:nextAddress forLength:2];
+    [file setInlineComment:[NSString stringWithFormat:@"sdk_version = %d.%d", header[0x0a], header[0x0b]] atVirtualAddress:nextAddress reason:CCReason_Automatic];
+    nextAddress += 2;
     
-    [file setType:Type_Int16 atVirtualAddress:baseAddress + LOAD_SIZE_ADDR forLength:2];
-    [file setInlineComment:@"loadSize" atVirtualAddress:baseAddress + LOAD_SIZE_ADDR reason:CCReason_Automatic];
-
-    [file setType:Type_Int32 atVirtualAddress:baseAddress + OFFSET_ADDR forLength:4];
-    [file setInlineComment:@"offset" atVirtualAddress:baseAddress + OFFSET_ADDR reason:CCReason_Automatic];
+    [file setType:Type_Int8 atVirtualAddress:nextAddress forLength:2];
+    [file setInlineComment:[NSString stringWithFormat:@"app_version = %d.%d", header[0x0c], header[0x0d]] atVirtualAddress:nextAddress reason:CCReason_Automatic];
+    nextAddress += 2;
     
-    [file setType:Type_Int32 atVirtualAddress:baseAddress + CRC_ADDR forLength:4];
-    [file setInlineComment:@"crc" atVirtualAddress:baseAddress + CRC_ADDR reason:CCReason_Automatic];
-
-    [file setType:Type_ASCII atVirtualAddress:baseAddress + NAME_ADDR forLength:32];
-    [file setInlineComment:@"name" atVirtualAddress:baseAddress + NAME_ADDR reason:CCReason_Automatic];
+    [file setType:Type_Int16 atVirtualAddress:nextAddress forLength:2];
+    [file setInlineComment:@"load_size" atVirtualAddress:nextAddress reason:CCReason_Automatic];
+    nextAddress += 2;
     
-    [file setType:Type_ASCII atVirtualAddress:baseAddress + COMPANY_ADDR forLength:32];
-    [file setInlineComment:@"company" atVirtualAddress:baseAddress + COMPANY_ADDR reason:CCReason_Automatic];
+    [file setType:Type_Int32 atVirtualAddress:nextAddress forLength:4];
+    [file setInlineComment:@"offset" atVirtualAddress:nextAddress reason:CCReason_Automatic];
+    nextAddress += 4;
     
-    [file setType:Type_Int32 atVirtualAddress:baseAddress + ICON_RES_ID_ADDR forLength:4];
-    [file setInlineComment:@"icon_resource_id" atVirtualAddress:baseAddress + ICON_RES_ID_ADDR reason:CCReason_Automatic];
+    [file setType:Type_Int32 atVirtualAddress:nextAddress forLength:4];
+    [file setInlineComment:@"crc" atVirtualAddress:nextAddress reason:CCReason_Automatic];
+    nextAddress += 4;
 
-    [file setType:Type_Int32 atVirtualAddress:baseAddress + JUMP_TABLE_ADDR forLength:4];
-    [file setInlineComment:@"jump_table_addr" atVirtualAddress:baseAddress + JUMP_TABLE_ADDR reason:CCReason_Automatic];
-
-    [file setType:Type_Int32 atVirtualAddress:baseAddress + FLAGS_ADDR forLength:4];
-    [file setInlineComment:@"flags" atVirtualAddress:baseAddress + FLAGS_ADDR reason:CCReason_Automatic];
-
-    [file setType:Type_Int32 atVirtualAddress:baseAddress + NUM_RELOC_ENTRIES_ADDR forLength:4];
-    [file setInlineComment:@"num_reloc_entries" atVirtualAddress:baseAddress + NUM_RELOC_ENTRIES_ADDR reason:CCReason_Automatic];
-
-    [file setType:Type_Int8 atVirtualAddress:baseAddress + UUID_ADDR forLength:16];
-    NSUUID *appUUID = [[NSUUID alloc] initWithUUIDBytes:header+UUID_ADDR];
-    [file setInlineComment:[NSString stringWithFormat:@"UUID: %@", appUUID] atVirtualAddress:baseAddress + UUID_ADDR reason:CCReason_Automatic];
+    [file setType:Type_ASCII atVirtualAddress:nextAddress forLength:32];
+    [file setInlineComment:@"name" atVirtualAddress:nextAddress reason:CCReason_Automatic];
+    nextAddress += 32;
     
-    [file setType:Type_Int32 atVirtualAddress:baseAddress + RESOURCE_CRC_ADDR forLength:4];
-    [file setInlineComment:@"resource_crc" atVirtualAddress:baseAddress + RESOURCE_CRC_ADDR reason:CCReason_Automatic];
+    [file setType:Type_ASCII atVirtualAddress:nextAddress forLength:32];
+    [file setInlineComment:@"company" atVirtualAddress:nextAddress reason:CCReason_Automatic];
+    nextAddress += 32;
+    
+    [file setType:Type_Int32 atVirtualAddress:nextAddress forLength:4];
+    [file setInlineComment:@"icon_resource_id" atVirtualAddress:nextAddress reason:CCReason_Automatic];
+    nextAddress += 4;
 
-    [file setType:Type_Int32 atVirtualAddress:baseAddress + RESOURCE_TIMESTAMP_ADDR forLength:4];
-    [file setInlineComment:@"resource_timestamp" atVirtualAddress:baseAddress + RESOURCE_TIMESTAMP_ADDR reason:CCReason_Automatic];
+    [file setType:Type_Int32 atVirtualAddress:nextAddress forLength:4];
+    [file setInlineComment:@"jump_table_addr" atVirtualAddress:nextAddress reason:CCReason_Automatic];
+    nextAddress += 4;
+    
+    [file setType:Type_Int32 atVirtualAddress:nextAddress forLength:4];
+    [file setInlineComment:@"flags" atVirtualAddress:nextAddress reason:CCReason_Automatic];
+    nextAddress += 4;
 
-    [file setType:Type_Int16 atVirtualAddress:baseAddress + VIRTUAL_SIZE_ADDR forLength:2];
-    [file setInlineComment:@"virtualSize" atVirtualAddress:baseAddress + VIRTUAL_SIZE_ADDR reason:CCReason_Automatic];
+    // .major:0x09 .minor:0x00 -- 2.0, no more reloc_list_start
+    if (headerVersion.major < 9) {
+        [file setType:Type_Int32 atVirtualAddress:nextAddress forLength:4];
+        [file setInlineComment:@"reloc_list_start" atVirtualAddress:nextAddress reason:CCReason_Automatic];
+        nextAddress += 4;
+    }
+    [file setType:Type_Int32 atVirtualAddress:nextAddress forLength:4];
+    [file setInlineComment:@"num_reloc_entries" atVirtualAddress:nextAddress reason:CCReason_Automatic];
+    nextAddress += 4;
+    
+    [file setType:Type_Int8 atVirtualAddress:nextAddress forLength:16];
+    NSUUID *appUUID = [[NSUUID alloc] initWithUUIDBytes:header+(nextAddress-baseAddress)];
+    [file setInlineComment:[NSString stringWithFormat:@"UUID: %@", appUUID] atVirtualAddress:nextAddress reason:CCReason_Automatic];
+    nextAddress += 16;
+    
+    // .major:0x08 .minor:0x02 -- 2.0, added resource crc and resource timestamp
+    if (headerVersion.major > 0x08 || (headerVersion.major == 0x08 && headerVersion.minor >= 0x02)) {
+        [file setType:Type_Int32 atVirtualAddress:nextAddress forLength:4];
+        [file setInlineComment:@"resource_crc" atVirtualAddress:nextAddress reason:CCReason_Automatic];
+        nextAddress += 4;
+        
+        [file setType:Type_Int32 atVirtualAddress:nextAddress forLength:4];
+        [file setInlineComment:@"resource_timestamp" atVirtualAddress:nextAddress reason:CCReason_Automatic];
+        nextAddress += 4;
+    }
 
-    [file setType:Type_Int16 atVirtualAddress:baseAddress + 130 forLength:2];
-    [file setInlineComment:@"padding" atVirtualAddress:baseAddress + 130 reason:CCReason_Automatic];
+    // .major:0x10 .minor:0x00 -- 2.0, added virtual_size
+    if (headerVersion.major >= 0x10) {
+        [file setType:Type_Int16 atVirtualAddress:nextAddress forLength:2];
+        [file setInlineComment:@"virtual_size" atVirtualAddress:nextAddress reason:CCReason_Automatic];
+        nextAddress += 2;
+    }
 
     // API trampoline (20 bytes, last 4 are pointed at by jump table addr */
-    uint32_t jumpTableOffset = OSReadLittleInt32(header, JUMP_TABLE_ADDR);
+    uint32_t jumpTableOffset = OSReadLittleInt32(header, 0x5c);
     uint32_t trampolineSize = 20;
     uint32_t trampolineOffset = jumpTableOffset + 4 - trampolineSize;
     NSObject<HPSection> *trampolineSection = [segment addSectionAt:baseAddress + trampolineOffset size:trampolineSize];
@@ -249,7 +273,7 @@
     file.cpuFamily = @"arm";
     file.cpuSubFamily = @"v6";
     file.addressSpaceWidthInBits = 32;
-    uint32_t entryPoint = baseAddress + OSReadLittleInt32(header, OFFSET_ADDR);
+    uint32_t entryPoint = baseAddress + OSReadLittleInt32(header, 0x10);
     [file addEntryPoint:entryPoint];
     [file setName:@"main" forVirtualAddress:entryPoint reason:NCReason_Import];
     [self registerDataTypes:file];
