@@ -1,0 +1,4 @@
+[submodule "HopperSDK-v4"]
+	path = HopperSDK-v4
+	url = https://github.com/makigumo/HopperSDK-v4.git
+	branch = include
