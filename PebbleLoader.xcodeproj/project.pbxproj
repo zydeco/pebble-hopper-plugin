@@ -6,9 +6,49 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		2870699B2193759D00D20B89 /* StructTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = 2870699A2193759D00D20B89 /* StructTypes.json */; };
+		2870699D2194B53800D20B89 /* api.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2870699C2194B53800D20B89 /* api.txt */; };
+		2887385F219205D000E24DC3 /* PebbleLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2887385E219205D000E24DC3 /* PebbleLoader.m */; };
+		288738822193637400E24DC3 /* PebbleLoader+Types.m in Sources */ = {isa = PBXBuildFile; fileRef = 288738812193637400E24DC3 /* PebbleLoader+Types.m */; };
+		28873884219365D300E24DC3 /* EnumTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = 28873883219365D300E24DC3 /* EnumTypes.json */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		2870699A2193759D00D20B89 /* StructTypes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StructTypes.json; sourceTree = "<group>"; };
+		2870699C2194B53800D20B89 /* api.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = api.txt; sourceTree = "<group>"; };
 		288738542192059A00E24DC3 /* PebbleLoader.hopperLoader */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PebbleLoader.hopperLoader; sourceTree = BUILT_PRODUCTS_DIR; };
 		288738572192059A00E24DC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2887385D219205D000E24DC3 /* PebbleLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PebbleLoader.h; sourceTree = "<group>"; };
+		2887385E219205D000E24DC3 /* PebbleLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PebbleLoader.m; sourceTree = "<group>"; };
+		28873862219205DF00E24DC3 /* HPDetectedFileType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPDetectedFileType.h; sourceTree = "<group>"; };
+		28873863219205DF00E24DC3 /* HPDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPDocument.h; sourceTree = "<group>"; };
+		28873864219205DF00E24DC3 /* HPSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPSegment.h; sourceTree = "<group>"; };
+		28873865219205DF00E24DC3 /* HPTypeEnumField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPTypeEnumField.h; sourceTree = "<group>"; };
+		28873866219205DF00E24DC3 /* HPLoaderOptionComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPLoaderOptionComponents.h; sourceTree = "<group>"; };
+		28873867219205DF00E24DC3 /* HPSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPSection.h; sourceTree = "<group>"; };
+		28873868219205DF00E24DC3 /* FileLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileLoader.h; sourceTree = "<group>"; };
+		28873869219205DF00E24DC3 /* CPUDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPUDefinition.h; sourceTree = "<group>"; };
+		2887386A219205DF00E24DC3 /* HPProcedure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPProcedure.h; sourceTree = "<group>"; };
+		2887386B219205DF00E24DC3 /* HPTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPTag.h; sourceTree = "<group>"; };
+		2887386C219205DF00E24DC3 /* DisasmStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisasmStruct.h; sourceTree = "<group>"; };
+		2887386D219205DF00E24DC3 /* CommonTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTypes.h; sourceTree = "<group>"; };
+		2887386E219205DF00E24DC3 /* Hopper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hopper.h; sourceTree = "<group>"; };
+		2887386F219205DF00E24DC3 /* HPCallDestination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPCallDestination.h; sourceTree = "<group>"; };
+		28873870219205DF00E24DC3 /* HPHopperServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPHopperServices.h; sourceTree = "<group>"; };
+		28873871219205DF00E24DC3 /* HPMethodSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPMethodSignature.h; sourceTree = "<group>"; };
+		28873872219205DF00E24DC3 /* CPUContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPUContext.h; sourceTree = "<group>"; };
+		28873873219205DF00E24DC3 /* HPMethodArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPMethodArgument.h; sourceTree = "<group>"; };
+		28873874219205DF00E24DC3 /* HPTypeDesc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPTypeDesc.h; sourceTree = "<group>"; };
+		28873875219205DF00E24DC3 /* HPCallReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPCallReference.h; sourceTree = "<group>"; };
+		28873876219205DF00E24DC3 /* HPDisassembledFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPDisassembledFile.h; sourceTree = "<group>"; };
+		28873877219205DF00E24DC3 /* HopperPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HopperPlugin.h; sourceTree = "<group>"; };
+		28873878219205DF00E24DC3 /* HPASMLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPASMLine.h; sourceTree = "<group>"; };
+		28873879219205DF00E24DC3 /* HPTypeStructField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPTypeStructField.h; sourceTree = "<group>"; };
+		2887387A219205DF00E24DC3 /* HPBasicBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPBasicBlock.h; sourceTree = "<group>"; };
+		2887387B219205DF00E24DC3 /* HopperTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HopperTool.h; sourceTree = "<group>"; };
+		288738812193637400E24DC3 /* PebbleLoader+Types.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PebbleLoader+Types.m"; sourceTree = "<group>"; };
+		28873883219365D300E24DC3 /* EnumTypes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = EnumTypes.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +67,7 @@
 			children = (
 				288738562192059A00E24DC3 /* PebbleLoader */,
 				288738552192059A00E24DC3 /* Products */,
+				28873860219205DF00E24DC3 /* include */,
 			);
 			sourceTree = "<group>";
 		};
@@ -42,8 +83,56 @@
 			isa = PBXGroup;
 			children = (
 				288738572192059A00E24DC3 /* Info.plist */,
+				2887385D219205D000E24DC3 /* PebbleLoader.h */,
+				2887385E219205D000E24DC3 /* PebbleLoader.m */,
+				288738812193637400E24DC3 /* PebbleLoader+Types.m */,
+				28873883219365D300E24DC3 /* EnumTypes.json */,
+				2870699A2193759D00D20B89 /* StructTypes.json */,
+				2870699C2194B53800D20B89 /* api.txt */,
 			);
 			path = PebbleLoader;
+			sourceTree = "<group>";
+		};
+		28873860219205DF00E24DC3 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				28873861219205DF00E24DC3 /* Hopper */,
+			);
+			name = include;
+			path = ../include;
+			sourceTree = "<group>";
+		};
+		28873861219205DF00E24DC3 /* Hopper */ = {
+			isa = PBXGroup;
+			children = (
+				28873862219205DF00E24DC3 /* HPDetectedFileType.h */,
+				28873863219205DF00E24DC3 /* HPDocument.h */,
+				28873864219205DF00E24DC3 /* HPSegment.h */,
+				28873865219205DF00E24DC3 /* HPTypeEnumField.h */,
+				28873866219205DF00E24DC3 /* HPLoaderOptionComponents.h */,
+				28873867219205DF00E24DC3 /* HPSection.h */,
+				28873868219205DF00E24DC3 /* FileLoader.h */,
+				28873869219205DF00E24DC3 /* CPUDefinition.h */,
+				2887386A219205DF00E24DC3 /* HPProcedure.h */,
+				2887386B219205DF00E24DC3 /* HPTag.h */,
+				2887386C219205DF00E24DC3 /* DisasmStruct.h */,
+				2887386D219205DF00E24DC3 /* CommonTypes.h */,
+				2887386E219205DF00E24DC3 /* Hopper.h */,
+				2887386F219205DF00E24DC3 /* HPCallDestination.h */,
+				28873870219205DF00E24DC3 /* HPHopperServices.h */,
+				28873871219205DF00E24DC3 /* HPMethodSignature.h */,
+				28873872219205DF00E24DC3 /* CPUContext.h */,
+				28873873219205DF00E24DC3 /* HPMethodArgument.h */,
+				28873874219205DF00E24DC3 /* HPTypeDesc.h */,
+				28873875219205DF00E24DC3 /* HPCallReference.h */,
+				28873876219205DF00E24DC3 /* HPDisassembledFile.h */,
+				28873877219205DF00E24DC3 /* HopperPlugin.h */,
+				28873878219205DF00E24DC3 /* HPASMLine.h */,
+				28873879219205DF00E24DC3 /* HPTypeStructField.h */,
+				2887387A219205DF00E24DC3 /* HPBasicBlock.h */,
+				2887387B219205DF00E24DC3 /* HopperTool.h */,
+			);
+			path = Hopper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -102,6 +191,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2870699D2194B53800D20B89 /* api.txt in Resources */,
+				2870699B2193759D00D20B89 /* StructTypes.json in Resources */,
+				28873884219365D300E24DC3 /* EnumTypes.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +204,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				288738822193637400E24DC3 /* PebbleLoader+Types.m in Sources */,
+				2887385F219205D000E24DC3 /* PebbleLoader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +263,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../include";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -222,6 +317,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../include";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -236,7 +332,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = UJXNDZ5TNU;
 				INFOPLIST_FILE = PebbleLoader/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Application Support/Hopper/PlugIns/v4/Loaders";
 				PRODUCT_BUNDLE_IDENTIFIER = net.namedfork.PebbleLoader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -251,7 +347,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = UJXNDZ5TNU;
 				INFOPLIST_FILE = PebbleLoader/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Application Support/Hopper/PlugIns/v4/Loaders";
 				PRODUCT_BUNDLE_IDENTIFIER = net.namedfork.PebbleLoader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

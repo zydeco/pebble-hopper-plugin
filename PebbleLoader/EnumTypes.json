@@ -1,0 +1,391 @@
+{
+  "ButtonId": [
+    "BUTTON_ID_BACK",
+    "BUTTON_ID_UP",
+    "BUTTON_ID_SELECT",
+    "BUTTON_ID_DOWN",
+    "NUM_BUTTONS"
+  ],
+  "WatchInfoModel": [
+    "WATCH_INFO_MODEL_UNKNOWN",
+    "WATCH_INFO_MODEL_PEBBLE_ORIGINAL",
+    "WATCH_INFO_MODEL_PEBBLE_STEEL",
+    "WATCH_INFO_MODEL_PEBBLE_TIME",
+    "WATCH_INFO_MODEL_PEBBLE_TIME_STEEL",
+    "WATCH_INFO_MODEL_PEBBLE_TIME_ROUND_14",
+    "WATCH_INFO_MODEL_PEBBLE_TIME_ROUND_20", 
+    "WATCH_INFO_MODEL_PEBBLE_2_HR",
+    "WATCH_INFO_MODEL_PEBBLE_2_SE",
+    "WATCH_INFO_MODEL_PEBBLE_TIME_2",
+    "WATCH_INFO_MODEL__MAX"
+  ],
+  "WatchInfoColor": {
+    "WATCH_INFO_COLOR_UNKNOWN": 0, 
+    "WATCH_INFO_COLOR_BLACK": 1, 
+    "WATCH_INFO_COLOR_WHITE": 2, 
+    "WATCH_INFO_COLOR_RED": 3, 
+    "WATCH_INFO_COLOR_ORANGE": 4, 
+    "WATCH_INFO_COLOR_GRAY": 5, 
+    "WATCH_INFO_COLOR_STAINLESS_STEEL": 6, 
+    "WATCH_INFO_COLOR_MATTE_BLACK": 7, 
+    "WATCH_INFO_COLOR_BLUE": 8, 
+    "WATCH_INFO_COLOR_GREEN": 9, 
+    "WATCH_INFO_COLOR_PINK": 10, 
+    "WATCH_INFO_COLOR_TIME_WHITE": 11, 
+    "WATCH_INFO_COLOR_TIME_BLACK": 12, 
+    "WATCH_INFO_COLOR_TIME_RED": 13, 
+    "WATCH_INFO_COLOR_TIME_STEEL_SILVER": 14, 
+    "WATCH_INFO_COLOR_TIME_STEEL_BLACK": 15, 
+    "WATCH_INFO_COLOR_TIME_STEEL_GOLD": 16, 
+    "WATCH_INFO_COLOR_TIME_ROUND_SILVER_14": 17, 
+    "WATCH_INFO_COLOR_TIME_ROUND_BLACK_14": 18, 
+    "WATCH_INFO_COLOR_TIME_ROUND_SILVER_20": 19, 
+    "WATCH_INFO_COLOR_TIME_ROUND_BLACK_20": 20, 
+    "WATCH_INFO_COLOR_TIME_ROUND_ROSE_GOLD_14": 21, 
+    "WATCH_INFO_COLOR_PEBBLE_2_HR_BLACK": 25, 
+    "WATCH_INFO_COLOR_PEBBLE_2_HR_LIME": 27, 
+    "WATCH_INFO_COLOR_PEBBLE_2_HR_FLAME": 28, 
+    "WATCH_INFO_COLOR_PEBBLE_2_HR_WHITE": 29, 
+    "WATCH_INFO_COLOR_PEBBLE_2_HR_AQUA": 30, 
+    "WATCH_INFO_COLOR_PEBBLE_2_SE_BLACK": 24, 
+    "WATCH_INFO_COLOR_PEBBLE_2_SE_WHITE": 26, 
+    "WATCH_INFO_COLOR_PEBBLE_TIME_2_BLACK": 31, 
+    "WATCH_INFO_COLOR_PEBBLE_TIME_2_SILVER": 32, 
+    "WATCH_INFO_COLOR_PEBBLE_TIME_2_GOLD": 33, 
+    "WATCH_INFO_COLOR__MAX": 34
+  },
+  "WeekDay": [
+    "TODAY",
+    "SUNDAY",
+    "MONDAY",
+    "TUESDAY",
+    "WEDNESDAY",
+    "THURSDAY",
+    "FRIDAY",
+    "SATURDAY"
+  ],
+  "PlatformType": [
+    "PlatformTypeAplite",
+    "PlatformTypeBasalt",
+    "PlatformTypeChalk",
+    "PlatformTypeDiorite",
+    "PlatformTypeEmery"
+  ],
+  "AccelAxisType": [
+    "ACCEL_AXIS_X",
+    "ACCEL_AXIS_Y",
+    "ACCEL_AXIS_Z"
+  ],
+  "AccelSamplingRate": {
+    "ACCEL_SAMPLING_10HZ": 10,
+    "ACCEL_SAMPLING_25HZ": 25,
+    "ACCEL_SAMPLING_50HZ": 50,
+    "ACCEL_SAMPLING_100HZ": 100
+  },
+  "CompassStatus": {
+    "CompassStatusUnavailable": -1,
+    "CompassStatusDataInvalid": 0,
+    "CompassStatusCalibrating": 1,
+    "CompassStatusCalibrated": 2
+  },
+  "TimeUnits": {
+    "SECOND_UNIT": 1,
+    "MINUTE_UNIT": 2,
+    "HOUR_UNIT": 4,
+    "DAY_UNIT": 8,
+    "MONTH_UNIT": 16,
+    "YEAR_UNIT": 32
+  },
+  "HealthMetric": [
+    "HealthMetricStepCount",
+    "HealthMetricActiveSeconds",
+    "HealthMetricWalkedDistanceMeters",
+    "HealthMetricSleepSeconds",
+    "HealthMetricSleepRestfulSeconds",
+    "HealthMetricRestingKCalories",
+    "HealthMetricActiveKCalories",
+    "HealthMetricHeartRateBPM",
+    "HealthMetricHeartRateRawBPM"
+  ],
+  "HealthServiceTimeScope": [
+    "HealthServiceTimeScopeOnce",
+    "HealthServiceTimeScopeWeekly",
+    "HealthServiceTimeScopeDailyWeekdayOrWeekend",
+    "HealthServiceTimeScopeDaily"
+  ],
+  "HealthAggregation": [
+    "HealthAggregationSum",
+    "HealthAggregationAvg",
+    "HealthAggregationMin",
+    "HealthAggregationMax"
+  ],
+  "HealthActivty": {
+    "HealthActivityNone": 0,
+    "HealthActivitySleep": 1,
+    "HealthActivityRestfulSleep": 2,
+    "HealthActivityWalk": 4,
+    "HealthActivityRun": 8,
+    "HealthActivityOpenWorkout": 16
+  },
+  "HealthIterationDirection": [
+    "HealthIterationDirectionPast",
+    "HealthIterationDirectionFuture"
+  ],
+  "HealthServiceAccessibilityMask": {
+    "HealthServiceAccessibilityMaskAvailable": 1,
+    "HealthServiceAccessibilityMaskNoPermission": 2,
+    "HealthServiceAccessibilityMaskNotSupported": 4,
+    "HealthServiceAccessibilityMaskNotAvailable": 8
+  },
+  "HealthEventType": [
+    "HealthEventSignificantUpdate",
+    "HealthEventMovementUpdate",
+    "HealthEventSleepUpdate",
+    "HealthEventMetricAlert",
+    "HealthEventHeartRateUpdate"
+  ],
+  "AmbienLightLevel": [
+    "AmbientLightLevelUnknown",
+    "AmbientLightLevelVeryDark",
+    "AmbientLightLevelDark",
+    "AmbientLightLevelLight",
+    "AmbientLightLevelVeryLight"
+  ],
+  "MeasurementSystem": [
+    "MeasurementSystemUnknown",
+    "MeasurementSystemMetric",
+    "MeasurementSystemImperial"
+  ],
+  "DataLoggingItemType": {
+    "DATA_LOGGING_BYTE_ARRAY": 0,
+    "DATA_LOGGING_UINT": 2,
+    "DATA_LOGGING_INT": 3
+  },
+  "DataLoggingResult": [
+    "DATA_LOGGING_SUCCESS", 
+    "DATA_LOGGING_BUSY", 
+    "DATA_LOGGING_FULL", 
+    "DATA_LOGGING_NOT_FOUND", 
+    "DATA_LOGGING_CLOSED", 
+    "DATA_LOGGING_INVALID_PARAMS", 
+    "DATA_LOGGING_INTERNAL_ERR" 
+  ],
+  "AppLogLevel": {
+    "APP_LOG_LEVEL_ERROR": 1,
+    "APP_LOG_LEVEL_WARNING": 50,
+    "APP_LOG_LEVEL_INFO": 100,
+    "APP_LOG_LEVEL_DEBUG": 200,
+    "APP_LOG_LEVEL_DEBUG_VERBOSE": 255
+  },
+  "DictionaryResult": {
+    "DICT_OK": 0,
+    "DICT_NOT_ENOUGH_STORAGE": 2,
+    "DICT_INVALID_ARGS": 4,
+    "DICT_INTERNAL_INCONSISTENCY": 8,
+    "DICT_MALLOC_FAILED": 16
+  },
+  "TupleType": [
+    "TUPLE_BYTE_ARRAY",
+    "TUPLE_CSTRING",
+    "TUPLE_UINT",
+    "TUPLE_INT"
+  ],
+  "DictationSessionStatus": [
+    "DictationSessionStatusSuccess",
+    "DictationSessionStatusFailureTranscriptionRejected",
+    "DictationSessionStatusFailureTranscriptionRejectedWithError",
+    "DictationSessionStatusFailureSystemAborted",
+    "DictationSessionStatusFailureNoSpeechDetected",
+    "DictationSessionStatusFailureConnectivityError",
+    "DictationSessionStatusFailureDisabled",
+    "DictationSessionStatusFailureInternalError",
+    "DictationSessionStatusFailureRecognizerError"
+  ],
+  "AppMessageResult": {
+    "APP_MSG_OK": 0,
+    "APP_MSG_SEND_TIMEOUT": 2,
+    "APP_MSG_SEND_REJECTED": 4,
+    "APP_MSG_NOT_CONNECTED": 8,
+    "APP_MSG_APP_NOT_RUNNING": 16,
+    "APP_MSG_INVALID_ARGS": 32,
+    "APP_MSG_BUSY": 64,
+    "APP_MSG_BUFFER_OVERFLOW": 128,
+    "APP_MSG_ALREADY_RELEASED": 512,
+    "APP_MSG_CALLBACK_ALREADY_REGISTERED": 1024,
+    "APP_MSG_CALLBACK_NOT_REGISTERED": 2048,
+    "APP_MSG_OUT_OF_MEMORY": 4096,
+    "APP_MSG_CLOSED": 8192,
+    "APP_MSG_INTERNAL_ERROR": 16384,
+    "APP_MSG_INVALID_STATE": 32768
+  },
+  "AppWorkerResult": [
+    "APP_WORKER_RESULT_SUCCESS",
+    "APP_WORKER_RESULT_NO_WORKER",
+    "APP_WORKER_RESULT_DIFFERENT_APP",
+    "APP_WORKER_RESULT_NOT_RUNNING",
+    "APP_WORKER_RESULT_ALREADY_RUNNING",
+    "APP_WORKER_RESULT_ASKING_CONFIRMATION"
+  ],
+  "SniffInterval": [
+    "SNIFF_INTERVAL_NORMAL",
+    "SNIFF_INTERVAL_REDUCED"
+  ],
+  "StatusCode": {
+    "S_SUCCESS": 0,
+    "E_ERROR": -1,
+    "E_UNKNOWN": -2,
+    "E_INTERNAL": -3,
+    "E_INVALID_ARGUMENT": -4,
+    "E_OUT_OF_MEMORY": -5,
+    "E_OUT_OF_STORAGE": -6,
+    "E_OUT_OF_RESOURCES": -7,
+    "E_RANGE": -8,
+    "E_DOES_NOT_EXIST": -9,
+    "E_INVALID_OPERATION": -10,
+    "E_BUSY": -11,
+    "E_AGAIN": -12,
+    "S_TRUE": 1,
+    "S_FALSE": 0,
+    "S_NO_MORE_ITEMS": 2,
+    "S_NO_ACTION_REQUIRED": 3
+  },
+  "AppLaunchReason": [
+    "APP_LAUNCH_SYSTEM",
+    "APP_LAUNCH_USER",
+    "APP_LAUNCH_PHONE",
+    "APP_LAUNCH_WAKEUP",
+    "APP_LAUNCH_WORKER",
+    "APP_LAUNCH_QUICK_LAUNCH",
+    "APP_LAUNCH_TIMELINE_ACTION",
+    "APP_LAUNCH_SMARTSTRAP"
+  ],
+  "AppExitReason": [
+    "APP_EXIT_NOT_SPECIFIED",
+    "APP_EXIT_ACTION_PERFORMED_SUCCESSFULLY",
+    "NUM_EXIT_REASONS"
+  ],
+  "AppGlanceResult": {
+    "APP_GLANCE_RESULT_SUCCESS": 0,
+    "APP_GLANCE_RESULT_INVALID_TEMPLATE_STRING": 1,
+    "APP_GLANCE_RESULT_TEMPLATE_STRING_TOO_LONG": 2,
+    "APP_GLANCE_RESULT_INVALID_ICON": 4,
+    "APP_GLANCE_RESULT_SLICE_CAPACITY_EXCEEDED": 8,
+    "APP_GLANCE_RESULT_EXPIRES_IN_THE_PAST": 16,
+    "APP_GLANCE_RESULT_INVALID_SESSION": 32
+  },
+  "GBitmapFormat": [
+    "GBitmapFormat1Bit",
+    "GBitmapFormat8Bit",
+    "GBitmapFormat1BitPalette",
+    "GBitmapFormat2BitPalette",
+    "GBitmapFormat4BitPalette",
+    "GBitmapFormat8BitCircular"
+  ],
+  "GAlign": [
+    "GAlignCenter",
+    "GAlignTopLeft",
+    "GAlignTopRight",
+    "GAlignTop",
+    "GAlignLeft",
+    "GAlignBottom",
+    "GAlignRight",
+    "GAlignBottomRight",
+    "GAlignBottomLeft"
+  ],
+  "GCompOp": [
+    "GCompOpAssign",
+    "GCompOpAssignInverted",
+    "GCompOpOr",
+    "GCompOpAnd",
+    "GCompOpClear",
+    "GCompOpSet"
+  ],
+  "GCornerMask": {
+    "GCornerNone": 0,
+    "GCornerTopLeft": 1,
+    "GCornerTopRight": 2,
+    "GCornersTop": 3,
+    "GCornerBottomLeft": 4,
+    "GCornersLeft": 5,
+    "GCornerBottomRight": 8,
+    "GCornersRight": 10,
+    "GCornersBottom": 12,
+    "GCornersAll": 15
+  },
+  "GOvalScaleMode": [
+    "GOvalScaleModeFitCircle",
+    "GOvalScaleModeFillCircle"
+  ],
+  "GDrawCommandType": [
+    "GDrawCommandTypeInvalid",
+    "GDrawCommandTypePath",
+    "GDrawCommandTypeCircle",
+    "GDrawCommandTypePrecisePath"
+  ],
+  "GTextOverflowMode": [
+    "GTextOverflowModeWordWrap",
+    "GTextOverflowModeTrailingEllipsis",
+    "GTextOverflowModeFill"
+  ],
+  "GTextAlignment": [
+    "GTextAlignmentLeft",
+    "GTextAlignmentCenter",
+    "GTextAlignmentRight"
+  ],
+  "SmartstrapResult": [
+    "SmartstrapResultOk",
+    "SmartstrapResultInvalidArgs",
+    "SmartstrapResultNotPresent",
+    "SmartstrapResultBusy",
+    "SmartstrapResultServiceUnavailable",
+    "SmartstrapResultAttributeUnsupported",
+    "SmartstrapResultTimeOut"
+  ],
+  "AnimationCurve": [
+    "AnimationCurveLinear",
+    "AnimationCurveEaseIn",
+    "AnimationCurveEaseOut",
+    "AnimationCurveEaseInOut",
+    "AnimationCurveCustomFunction",
+    "AnimationCurveCustomInterpolationFunction",
+    "AnimationCurve_Reserved1",
+    "AnimationCurve_Reserved2"
+  ],
+  "ContentIndicatorDirection": [
+    "ContentIndicatorDirectionUp",
+    "ContentIndicatorDirectionDown",
+    "NumContentIndicatorDirections"
+  ],
+  "MenuRowAlign": [
+    "MenuRowAlignNone",
+    "MenuRowAlignCenter",
+    "MenuRowAlignTop",
+    "MenuRowAlignBottom"
+  ],
+  "ActionBarLayerIconPressAnimation": [
+    "ActionBarLayerIconPressAnimationNone",
+    "ActionBarLayerIconPressAnimationMoveLeft",
+    "ActionBarLayerIconPressAnimationMoveUp",
+    "ActionBarLayerIconPressAnimationMoveRight",
+    "ActionBarLayerIconPressAnimationMoveDown"
+  ],
+  "StatusBarLayerSeparatorMode": [
+    "StatusBarLayerSeparatorModeNone",
+    "StatusBarLayerSeparatorModeDotted"
+  ],
+  "ActionMenuAlign": [
+    "ActionMenuAlignTop",
+    "ActionMenuAlignCenter"
+  ],
+  "ActionMenuLevelDisplayMode": [
+    "ActionMenuLevelDisplayModeWide",
+    "ActionMenuLevelDisplayModeThin"
+  ],
+  "PreferredContentSize": [
+    "PreferredContentSizeSmall",
+    "PreferredContentSizeMedium",
+    "PreferredContentSizeLarge",
+    "PreferredContentSizeExtraLarge",
+    "NumPreferredContentSizes"
+  ]
+}

@@ -1,0 +1,345 @@
+[
+  {
+    "name": "WatchInfoVersion", 
+    "singleLineDisplay": true,
+    "fields": [
+    "uint8#d major // Major version number",
+    "uint8#d minor // Minor version number",
+    "uint8#d patch // Patch version number"
+  ]},
+  {
+    "name": "ConnectionHandlers", "fields": [
+    "voidPtr pebble_app_connection_handler",
+    "voidPtr pebblekit_connection_handler"
+  ]},
+  {
+    "name": "AppFocusHandlers", "fields": [
+    "voidPtr will_focus",
+    "voidPtr did_focus"
+  ]},
+  {
+    "name": "BatteryChargeState", 
+    "singleLineDisplay": true,
+    "fields": [
+    "uint8#d charge_percent",
+    "bool is_charging",
+    "bool is_plugged"
+  ]},
+  {
+    "name": "AccelData", "fields": [
+    "int16#sd x",
+    "int16#sd y",
+    "int16#sd z",
+    "bool did_vibrate",
+    "uint64#d timestamp"
+  ]},
+  {
+    "name": "AccelRawData", 
+    "singleLineDisplay": true,
+    "fields": [
+    "int16#sd x",
+    "int16#sd y",
+    "int16#sd z"
+  ]},
+  {
+    "name": "CompassHeadingData", "fields": [
+    "int32#d magnetic_heading",
+    "int32#d true_heading",
+    "CompassStatus compass_status",
+    "bool is_declination_valid"
+  ]},
+  {"name":"HealthMetricAlert"},
+  {
+    "name": "HealthMinuteData", "fields": [
+    "uint8#d steps",
+    "uint8#d orientation",
+    "uint16#d vmc",
+    "uint8#x flags // is_invalid:1; light:3; padding:4",
+    "uint8#d heart_rate_bpm",
+    "uint8 reserved[6]"
+  ]},
+  {
+    "name": "Uuid", 
+    "singleLineDisplay": true,
+    "fields": [
+    "uint8#x byte0",
+    "uint8#x byte1",
+    "uint8#x byte2",
+    "uint8#x byte3",
+    "uint8#x byte4",
+    "uint8#x byte5",
+    "uint8#x byte6",
+    "uint8#x byte7",
+    "uint8#x byte8",
+    "uint8#x byte9",
+    "uint8#x byte10",
+    "uint8#x byte11",
+    "uint8#x byte12",
+    "uint8#x byte13",
+    "uint8#x byte14",
+    "uint8#x byte15"
+  ]},
+  {
+    "name": "Tuple",
+    "incomplete": true,
+    "fields": [
+    "uint32 key",
+    "uint8 type // TupleType",
+    "uint16 length",
+    "void value"
+  ]},
+  {"name":"Dictionary"},
+  {
+    "name": "DictionaryIterator", "fields": [
+    "voidPtr dictionary",
+    "voidPtr end",
+    "voidPtr cursor // Tuple"
+  ]},
+  {
+    "name": "Tuplet", "fields": [
+    "TupleType type",
+    "uint32 key",
+    "voidPtr storage",
+    "uint16 length"
+  ]},
+  {"name":"DictationSession"},
+  {
+    "name": "AppSync", "fields": [
+    "DictionaryIterator current_iter",
+    "voidPtr current_or_buffer",
+    "uint16 _pad2",
+    "uint16 buffer_size",
+    "voidPtr callback.value_changed",
+    "voidPtr callback.error",
+    "voidPtr callback.context"
+  ]},
+  {
+    "name": "AppWorkerMessage", 
+    "singleLineDisplay": true,
+    "fields": [
+    "uint16 data0",
+    "uint16 data1",
+    "uint16 data2"
+  ]},
+  {"name":"AppTimer"},
+  {
+    "name": "AppGlanceSlice", "fields": [
+    "uint32 layout.icon",
+    "charPtr layout.subtitle_template_string",
+    "int32 expiration_time"
+  ]},
+  {"name":"AppGlanceReloadSession"},
+  {
+    "name": "GColor8", 
+    "singleLineDisplay": true,
+    "fields": [
+    "uint8#x argb"
+  ]},
+  {
+    "name": "GPoint", 
+    "singleLineDisplay": true,
+    "fields": [
+    "int16#sd x",
+    "int16#sd y"
+  ]},
+  {
+    "name": "GSize", 
+    "singleLineDisplay": true,
+    "fields": [
+    "int16#sd w",
+    "int16#sd h"
+  ]},
+  {
+    "name": "GRect", 
+    "singleLineDisplay": true,
+    "fields": [
+    "GPoint origin",
+    "GSize size"
+  ]},
+  {"name":"GBitmap"},
+  {"name":"GBitmapSequence"},
+  {
+    "name": "GBitmapDataRowInfo", "fields": [
+    "uint8Ptr data",
+    "int16#sd min_x",
+    "int16#sd max_x"
+  ]},
+  {"name":"GContext"},
+  {
+    "name": "GEdgeInsets", 
+    "singleLineDisplay": true,
+    "fields": [
+    "int16#d top",
+    "int16#d right",
+    "int16#d bottom",
+    "int16#d left"
+  ]},
+  {"name":"GDrawCommand"},
+  {"name":"GDrawCommandFrame"},
+  {"name":"GDrawCommandImage"},
+  {"name":"GDrawCommandList"},
+  {"name":"GDrawCommandSequence"},
+  {
+    "name": "GPathInfo", "fields": [
+    "uint32#d num_points",
+    "voidPtr points"
+  ]},
+  {
+    "name": "GPath", "fields": [
+    "uint32#d num_points",
+    "voidPtr points",
+    "int32#d rotation",
+    "GPoint offset"
+  ]},
+  {"name":"FontInfo"},
+  {"name":"GTextAttributes"},
+  {"name":"SmartstrapAttribute"},
+  {
+    "name": "SmartstrapHandlers", "fields": [
+    "voidPtr availability_did_change",
+    "voidPtr did_read",
+    "voidPtr did_write",
+    "voidPtr notified"
+  ]},
+  {"name":"Layer"},
+  {"name":"Window"},
+  {
+    "name": "WindowHandlers", "fields": [
+    "voidPtr load",
+    "voidPtr appear",
+    "voidPtr disappear",
+    "voidPtr unload"
+  ]},
+  {"name":"Animation"},
+  {
+    "name": "AnimationHandlers", "fields": [
+    "voidPtr started",
+    "voidPtr stopped"
+  ]},
+  {
+    "name": "AnimationImplementation", "fields": [
+    "voidPtr setup",
+    "voidPtr update",
+    "voidPtr teardown"
+  ]},
+  {
+    "name": "PropertyAnimationAccessors", "fields": [
+    "voidPtr setter",
+    "voidPtr getter"
+  ]},
+  {
+    "name": "PropertyAnimationImplementation", "fields": [
+    "AnimationImplementation base",
+    "PropertyAnimationAccessors accessors"
+  ]},
+  {"name":"PropertyAnimation"},
+  {
+    "name": "UnobstructedAreaHandlers", "fields": [
+    "voidPtr will_change",
+    "voidPtr change",
+    "voidPtr did_change"
+  ]},
+  {"name":"TextLayer"},
+  {"name":"ScrollLayer"},
+  {
+    "name": "ScrollLayerCallbacks", "fields": [
+    "voidPtr click_config_provider",
+    "voidPtr content_offset_changed_handler"
+  ]},
+  {"name":"ContentIndicator"},
+  {
+    "name": "ContentIndicatorConfig", "fields": [
+    "voidPtr layer",
+    "bool times_out",
+    "uint8 alignment // GAlign",
+    "GColor8 colors.foreground",
+    "GColor8 colors.background"
+  ]},
+  {
+    "name": "MenuIndex", "fields": [
+    "uint16#d section",
+    "uint16#d row"
+  ]},
+  {
+    "name": "MenuCellSpan", "fields": [
+    "int16#d y",
+    "int16#d h",
+    "int16#d sep",
+    "MenuIndex index"
+  ]},
+  {"name":"MenuLayer"},
+  {
+    "name": "MenuLayerCallbacks", "fields": [
+    "voidPtr get_num_sections",
+    "voidPtr get_num_rows",
+    "voidPtr get_cell_height",
+    "voidPtr get_header_height",
+    "voidPtr draw_row",
+    "voidPtr draw_header",
+    "voidPtr select_click",
+    "voidPtr select_long_click",
+    "voidPtr selection_changed",
+    "voidPtr get_separator_height",
+    "voidPtr draw_separator",
+    "voidPtr selection_will_change",
+    "voidPtr draw_background"
+  ]},
+  {"name":"SimpleMenuLayer"},
+  {
+    "name": "SimpleMenuItem", "fields": [
+    "charPtr title",
+    "charPtr subtitle",
+    "voidPtr icon",
+    "voidPtr callback"
+  ]},
+  {
+    "name": "SimpleMenuSection", "fields": [
+    "charPtr title",
+    "voidPtr items",
+    "uint32#d num_items"
+  ]},
+  {"name":"ActionBarLayer"},
+  {"name":"StatusBarLayer"},
+  {"name":"BitmapLayer"},
+  {"name":"RotBitmapLayer"},
+  {"name":"NumberWindow"},
+  {
+    "name": "NumberWindowCallbacks", "fields": [
+    "voidPtr incremented",
+    "voidPtr decremented",
+    "voidPtr selected"
+  ]},
+  {"name":"ActionMenuItem"},
+  {"name":"ActionMenuLevel"},
+  {"name":"ActionMenu"},
+  {
+    "name": "ActionMenuConfig", "fields": [
+    "voidPtr root_level // ActionMenuLevel*",
+    "voidPtr context",
+    "GColor8 colors.background",
+    "GColor8 colors.foreground",
+    "uint16 _pad4",
+    "voidPtr will_close",
+    "voidPtr did_close",
+    "ActionMenuAlign align"
+  ]},
+  {
+    "name": "VibePattern", "fields": [
+    "uint32Ptr durations",
+    "uint32#d num_segments"
+  ]},
+  {
+    "name": "tm", "fields": [
+    "int32 tm_sec",
+    "int32 tm_min",
+    "int32 tm_hour",
+    "int32 tm_mday",
+    "int32 tm_mon",
+    "int32 tm_year",
+    "int32 tm_wday",
+    "int32 tm_yday",
+    "int32 tm_isdst",
+    "int32 tm_gmtoff",
+    "char tm_zone[6]"
+  ]}
+]

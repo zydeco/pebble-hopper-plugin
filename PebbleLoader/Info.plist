@@ -21,6 +21,6 @@
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2018 namedfork. All rights reserved.</string>
 	<key>NSPrincipalClass</key>
-	<string></string>
+	<string>PebbleLoader</string>
 </dict>
 </plist>
