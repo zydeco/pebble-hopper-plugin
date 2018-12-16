@@ -79,7 +79,7 @@
     return data.length > 0x84 && memcmp(data.bytes, "PBLAPP\0\0", 8) == 0;
 }
 
-- (NSArray<NSObject<HPDetectedFileType> *> *)detectedTypesForData:(NSData *)data {
+- (NSArray<NSObject<HPDetectedFileType> *> *)detectedTypesForData:(NSData *)data ofFileNamed:(NSString*)fileName {
     if ([self hasPebbleHeader:data]) {
         NSObject<HPDetectedFileType> *type = [_services detectedType];
         type.fileDescription = @"Pebble App";
@@ -92,7 +92,7 @@
     return @[];
 }
 
-- (NSData *)extractFromData:(NSData *)data usingDetectedFileType:(NSObject<HPDetectedFileType> *)fileType returnAdjustOffset:(uint64_t *)adjustOffset {
+- (NSData *)extractFromData:(NSData *)data usingDetectedFileType:(NSObject<HPDetectedFileType> *)fileType returnAdjustOffset:(uint64_t *)adjustOffset returnAdjustFilename:(NSString **)filename {
     return nil;
 }
 
@@ -273,6 +273,7 @@
     file.cpuFamily = @"arm";
     file.cpuSubFamily = @"v6";
     file.addressSpaceWidthInBits = 32;
+    file.integerWidthInBits = 32;
     uint32_t entryPoint = baseAddress + OSReadLittleInt32(header, 0x10);
     [file addEntryPoint:entryPoint];
     [file setName:@"main" forVirtualAddress:entryPoint reason:NCReason_Import];
