@@ -40,7 +40,7 @@
     return self;
 }
 
-- (HopperUUID *)pluginUUID {
+- (nonnull NSObject<HPHopperUUID> *)pluginUUID {
     return [_services UUIDWithString:@"6bccbe4a-f1de-4309-84c4-3a47155c1392"];
 }
 
