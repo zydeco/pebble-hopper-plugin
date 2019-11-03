@@ -10,6 +10,7 @@
 		28238E12236F6E3B0052CB47 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 28238E10236F6E3B0052CB47 /* unzip.c */; };
 		28238E18236F6FC70052CB47 /* PBWLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 28238E17236F6FC70052CB47 /* PBWLoader.m */; };
 		28238E1A236F80850052CB47 /* miniioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 28238E19236F80850052CB47 /* miniioapi.c */; };
+		28238E1B236F8FCC0052CB47 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 28238E0B236E592B0052CB47 /* libz.tbd */; };
 		2870699B2193759D00D20B89 /* StructTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = 2870699A2193759D00D20B89 /* StructTypes.json */; };
 		2870699D2194B53800D20B89 /* api.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2870699C2194B53800D20B89 /* api.txt */; };
 		2887385F219205D000E24DC3 /* PebbleLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2887385E219205D000E24DC3 /* PebbleLoader.m */; };
@@ -66,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28238E1B236F8FCC0052CB47 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +308,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
@@ -359,18 +362,22 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};
 		2887385B2192059A00E24DC3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = UJXNDZ5TNU;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = PebbleLoader/Info.plist;
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Application Support/Hopper/PlugIns/v4/Loaders";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = net.namedfork.PebbleLoader;
 				PRODUCT_NAME = Pebble;
@@ -382,12 +389,15 @@
 		2887385C2192059A00E24DC3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = UJXNDZ5TNU;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = PebbleLoader/Info.plist;
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Application Support/Hopper/PlugIns/v4/Loaders";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = net.namedfork.PebbleLoader;
 				PRODUCT_NAME = Pebble;
