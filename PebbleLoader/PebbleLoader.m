@@ -67,8 +67,8 @@
     return @"1.0.0";
 }
 
-- (NSString *)commandLineIdentifier {
-    return @"Pebble";
+- (NSArray<NSString *> *)commandLineIdentifiers {
+    return @[@"Pebble"];
 }
 
 - (BOOL)canLoadDebugFiles {
