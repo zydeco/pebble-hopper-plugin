@@ -356,22 +356,20 @@
     [file setName:@"main" forVirtualAddress:entryPoint reason:NCReason_Import];
     [self registerDataTypes:file];
     
-    [self performSelectorOnMainThread:@selector(waitForDocument:) withObject:_services.currentDocument waitUntilDone:NO];
+    [self performSelectorInBackground:@selector(waitForDocument:) withObject:_services.currentDocument];
     return DIS_OK;
 }
 
 - (void)waitForDocument:(NSObject<HPDocument>*)document {
-    if (document.backgroundProcessActive) {
-        [self performSelector:_cmd withObject:document afterDelay:0.01];
-        return;
-    }
+    [NSThread sleepForTimeInterval:0.5];
+    [document waitForBackgroundProcessToEnd];
     NSObject<HPDisassembledFile> *file = document.disassembledFile;
     NSObject<HPProcedure> *trampoline = [file procedureAt:[file findVirtualAddressNamed:kTrampolineFunctionName]];
-    if (trampoline == nil || document.backgroundProcessActive) {
+    if (trampoline == nil) {
         [self performSelector:_cmd withObject:document afterDelay:0.01];
         return;
     }
-    [self performSelectorInBackground:@selector(mapAPICalls:) withObject:document];
+    [self mapAPICalls:document];
 }
 
 - (void)mapAPICalls:(NSObject<HPDocument>*)document {
