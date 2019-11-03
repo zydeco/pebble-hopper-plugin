@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28238E12236F6E3B0052CB47 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 28238E10236F6E3B0052CB47 /* unzip.c */; };
+		28238E18236F6FC70052CB47 /* PBWLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 28238E17236F6FC70052CB47 /* PBWLoader.m */; };
+		28238E1A236F80850052CB47 /* miniioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 28238E19236F80850052CB47 /* miniioapi.c */; };
 		2870699B2193759D00D20B89 /* StructTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = 2870699A2193759D00D20B89 /* StructTypes.json */; };
 		2870699D2194B53800D20B89 /* api.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2870699C2194B53800D20B89 /* api.txt */; };
 		2887385F219205D000E24DC3 /* PebbleLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2887385E219205D000E24DC3 /* PebbleLoader.m */; };
@@ -15,6 +18,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		28238E0B236E592B0052CB47 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		28238E10236F6E3B0052CB47 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		28238E11236F6E3B0052CB47 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		28238E14236F6E9D0052CB47 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		28238E16236F6FC70052CB47 /* PBWLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBWLoader.h; sourceTree = "<group>"; };
+		28238E17236F6FC70052CB47 /* PBWLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBWLoader.m; sourceTree = "<group>"; };
+		28238E19236F80850052CB47 /* miniioapi.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = miniioapi.c; sourceTree = "<group>"; };
 		2870699A2193759D00D20B89 /* StructTypes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StructTypes.json; sourceTree = "<group>"; };
 		2870699C2194B53800D20B89 /* api.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = api.txt; sourceTree = "<group>"; };
 		288738542192059A00E24DC3 /* Pebble.hopperLoader */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Pebble.hopperLoader; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,12 +72,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		28238E0A236E592B0052CB47 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				28238E0B236E592B0052CB47 /* libz.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		28238E0F236F6DFC0052CB47 /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				28238E14236F6E9D0052CB47 /* ioapi.h */,
+				28238E10236F6E3B0052CB47 /* unzip.c */,
+				28238E11236F6E3B0052CB47 /* unzip.h */,
+			);
+			name = minizip;
+			path = zlib/contrib/minizip;
+			sourceTree = "<group>";
+		};
 		2887384B2192059A00E24DC3 = {
 			isa = PBXGroup;
 			children = (
 				288738562192059A00E24DC3 /* PebbleLoader */,
 				288738552192059A00E24DC3 /* Products */,
 				28873860219205DF00E24DC3 /* include */,
+				28238E0F236F6DFC0052CB47 /* minizip */,
+				28238E0A236E592B0052CB47 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,6 +120,9 @@
 				28873883219365D300E24DC3 /* EnumTypes.json */,
 				2870699A2193759D00D20B89 /* StructTypes.json */,
 				2870699C2194B53800D20B89 /* api.txt */,
+				28238E16236F6FC70052CB47 /* PBWLoader.h */,
+				28238E17236F6FC70052CB47 /* PBWLoader.m */,
+				28238E19236F80850052CB47 /* miniioapi.c */,
 			);
 			path = PebbleLoader;
 			sourceTree = "<group>";
@@ -204,8 +238,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28238E12236F6E3B0052CB47 /* unzip.c in Sources */,
+				28238E1A236F80850052CB47 /* miniioapi.c in Sources */,
 				288738822193637400E24DC3 /* PebbleLoader+Types.m in Sources */,
 				2887385F219205D000E24DC3 /* PebbleLoader.m in Sources */,
+				28238E18236F6FC70052CB47 /* PBWLoader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,9 +367,11 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = UJXNDZ5TNU;
 				INFOPLIST_FILE = PebbleLoader/Info.plist;
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Application Support/Hopper/PlugIns/v4/Loaders";
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = net.namedfork.PebbleLoader;
 				PRODUCT_NAME = Pebble;
 				SKIP_INSTALL = YES;
@@ -345,9 +384,11 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = UJXNDZ5TNU;
 				INFOPLIST_FILE = PebbleLoader/Info.plist;
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Application Support/Hopper/PlugIns/v4/Loaders";
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = net.namedfork.PebbleLoader;
 				PRODUCT_NAME = Pebble;
 				SKIP_INSTALL = YES;

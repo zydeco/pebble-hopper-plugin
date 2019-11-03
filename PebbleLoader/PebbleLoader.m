@@ -9,6 +9,7 @@
 #import "PebbleLoader.h"
 #import <Hopper/HPTypeDesc.h>
 #import <Hopper/HPMethodSignature.h>
+#import "PBWLoader.h"
 
 #define kTrampolineFunctionName @"jump_to_pbl_function"
 
@@ -79,7 +80,48 @@
     return data.length > 0x84 && memcmp(data.bytes, "PBLAPP\0\0", 8) == 0;
 }
 
+- (BOOL)isPBW:(NSData*)data pathsMap:(NSDictionary<NSString*,NSString*>**)outPathsMap {
+    PBWLoader *pbwLoader = [[PBWLoader alloc] initWithData:data];
+    if (pbwLoader == nil) {
+        NSLog(@"%@: Could not initialize PBWLoader", self.className);
+        return NO;
+    }
+    NSData *appInfoData = [pbwLoader readFile:@"appinfo.json"];
+    if (appInfoData == nil) {
+        NSLog(@"%@: Could not find appinfo.json in archive", self.className);
+        return NO;
+    }
+    
+    NSDictionary *appInfo = [NSJSONSerialization JSONObjectWithData:appInfoData options:0 error:NULL];
+    if (appInfo == nil) {
+        NSLog(@"%@: Could not deserialize app info", self.className);
+        return NO;
+    }
+    NSArray<NSString*> *targetPlatforms = appInfo[@"targetPlatforms"];
+    if (targetPlatforms == nil) {
+        if (outPathsMap) {
+            *outPathsMap = @{@"aplite (pebble-app.bin)": @"pebble-app.bin"};
+        }
+        return YES;
+    }
+    NSMutableDictionary *pathsMap = [NSMutableDictionary dictionaryWithCapacity:4];
+    for (NSString *platform in targetPlatforms) {
+        if ([platform isEqualToString:@"aplite"] && [pbwLoader hasFile:@"pebble-app.bin"]) {
+            pathsMap[@"aplite (pebble-app.bin)"] = @"pebble-app.bin";
+        } else {
+            NSString *platformBinPath = [NSString stringWithFormat:@"%@/pebble-app.bin", platform];
+            pathsMap[[NSString stringWithFormat:@"%@ (%@)", platform, platformBinPath]] = platformBinPath;
+        }
+    }
+    
+    if (outPathsMap) {
+        *outPathsMap = pathsMap.copy;
+    }
+    return YES;
+}
+
 - (NSArray<NSObject<HPDetectedFileType> *> *)detectedTypesForData:(NSData *)data ofFileNamed:(NSString*)fileName {
+    NSDictionary<NSString*,NSString*> *pathsMap = nil;
     if ([self hasPebbleHeader:data]) {
         NSObject<HPDetectedFileType> *type = [_services detectedType];
         type.fileDescription = @"Pebble App";
@@ -88,11 +130,46 @@
         type.cpuSubFamily = @"v6";
         type.shortDescriptionString = @"pebble_app";
         return @[type];
+    } else if ([fileName.pathExtension isEqualToString:@"pbw"] && [self isPBW:data pathsMap:&pathsMap]) {
+        NSObject<HPDetectedFileType> *type = [_services detectedType];
+        type.fileDescription = @"Pebble Bundle";
+        type.addressWidth = AW_32bits;
+        type.cpuFamily = @"arm";
+        type.cpuSubFamily = @"v6";
+        type.shortDescriptionString = @"pebble_bundle";
+        type.compositeFile = YES;
+        
+        NSObject<HPLoaderOptionComponents> *options;
+        NSArray *sortedPlatforms = [pathsMap.allKeys sortedArrayUsingSelector:@selector(compare:)];
+        options = [_services stringListComponentWithLabel:@"Platform" andList:sortedPlatforms];
+        type.additionalParameters = @[options];
+        type.internalObject = @[fileName, pathsMap];
+        
+        return @[type];
     }
     return @[];
 }
 
 - (NSData *)extractFromData:(NSData *)data usingDetectedFileType:(NSObject<HPDetectedFileType> *)fileType returnAdjustOffset:(uint64_t *)adjustOffset returnAdjustFilename:(NSString **)filename {
+    PBWLoader *loader = [[PBWLoader alloc] initWithData:data];
+    if (loader) {
+        NSObject<HPLoaderOptionComponents> *stringListComponent = fileType.additionalParameters[0];
+        NSString *originalFileName = fileType.internalObject[0];
+        NSDictionary<NSString*,NSString*> *pathsMap = fileType.internalObject[1];
+        
+        NSString *name = stringListComponent.stringList[stringListComponent.selectedStringIndex];
+        NSString *path = pathsMap[name];
+        NSString *platformName = [name componentsSeparatedByString:@" "][0];
+        
+        if (filename) {
+            if (pathsMap.count == 1) {
+                *filename = originalFileName;
+            } else {
+                *filename = [NSString stringWithFormat:@"%@-%@", originalFileName.stringByDeletingPathExtension, platformName];
+            }
+        }
+        return [loader readFile:path];
+    }
     return nil;
 }
 
